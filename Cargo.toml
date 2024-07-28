@@ -4,10 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-#rivets = { path = "C:/Users/zacha/Documents/factorio/bin/rivets"}
+rivets = { path = "../rivets" }
 retour = { version = "0.3", features = ["static-detour"] }
 tracing = "0.1.40"
 anyhow = "1.0.86"
+ctor = "0.2.8"
 
 [lib]
 crate-type = ["dylib"]
