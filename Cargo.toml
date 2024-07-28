@@ -4,3 +4,18 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+#rivets = { path = "C:/Users/zacha/Documents/factorio/bin/rivets"}
+retour = { version = "0.3", features = ["static-detour"] }
+tracing = "0.1.40"
+anyhow = "1.0.86"
+
+[lib]
+crate-type = ["dylib"]
+path = "src/lib.rs"
+
+[lints.clippy]
+nursery = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+unwrap_used = "warn"
+expect_used = "allow"
+trivial_regex = "allow"

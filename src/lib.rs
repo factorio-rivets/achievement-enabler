@@ -1,14 +1,14 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use tracing::info;
+
+#[no_mangle]
+pub extern "C" fn main_detour() -> extern "C" fn() -> bool {
+    extern "C" fn a() ->bool {
+        false
+    }
+    a
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+#[no_mangle]
+pub extern "C" fn mangled_name() -> String {
+    "?valid@LuaSurface@@UEBA_NXZ".to_string()
 }
