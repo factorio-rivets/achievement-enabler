@@ -1,10 +1,8 @@
-use anyhow::Result;
-use retour::static_detour;
-use rivets::{detour, inject, start_stream};
-use tracing::{error, info};
+use rivets::detour;
+use tracing::info;
 
-#[detour("?valid@LuaSurface@@UEBA_NXZ")]
-fn valid() -> bool {
-    info!("Detoured into LuaSurface::valid!");
+#[detour(?valid@LuaSurface@@UEBA_NXZ)]
+fn valid(ggg: bool) -> bool {
+    info!("Detoured into LuaSurface::valid! {ggg}");
     false
 }
