@@ -13,7 +13,13 @@ struct EntityWithHealth;
 struct Surface;
 
 #[detour(?findRandomTarget@Surface@@QEAAPEAVEntityWithHealth@@VMapPosition@@VForceID@@NAEBV?$function@$$A6A_NAEBVEntityWithHealth@@@Z@std@@@Z)]
-fn find_random_target(this: Surface, _: MapPosition, _: ForceID, _: c_double, _: ()) -> *const EntityWithHealth {
+fn find_random_target(
+    this: Surface,
+    _: MapPosition,
+    _: ForceID,
+    _: c_double,
+    _: (),
+) -> *const EntityWithHealth {
     info!("Detoured into Surface::findRandomTarget!");
     1 as *const EntityWithHealth
 }
