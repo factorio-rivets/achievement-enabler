@@ -14,7 +14,7 @@ struct Surface;
 
 #[detour(?findRandomTarget@Surface@@QEAAPEAVEntityWithHealth@@VMapPosition@@VForceID@@NAEBV?$function@$$A6A_NAEBVEntityWithHealth@@@Z@std@@@Z)]
 fn find_random_target(
-    this: Surface,
+    _: Surface,
     _: MapPosition,
     _: ForceID,
     _: c_double,
