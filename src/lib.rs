@@ -1,7 +1,6 @@
 use rivets::defines;
 use rivets::detour;
 use rivets::Opaque;
-use tracing::info;
 
 #[detour(?run@LuaEventDispatcher@@AEAAXW4LuaEventType@@VMapTickType@@P8LuaGameScript@@EAA_NAEBVGameAction@@@Z2@Z)]
 fn run(
@@ -15,10 +14,10 @@ fn run(
     match event {
         Ok(defines::events::on_tick) => {}
         Ok(event) => {
-            info!("Rust event handler! {:?}", event);
+            println!("Rust event handler! {event:?}");
         }
         Err(_) => {
-            info!("Unknown event {:?}", lua_event_type);
+            println!("Unknown event {lua_event_type:?}");
         }
     }
     unsafe {

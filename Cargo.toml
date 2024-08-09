@@ -6,7 +6,6 @@ edition = "2021"
 [dependencies]
 rivets = { path = "../rivets" }
 retour = { version = "0.3", features = ["static-detour"] }
-tracing = "0.1.40"
 anyhow = "1.0.86"
 ctor = "0.2.8"
 
