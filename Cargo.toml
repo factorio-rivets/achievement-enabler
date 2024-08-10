@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-rivets = { path = "../rivets" }
+rivets = { git = "https://github.com/factorio-rivets/rivets" }
 retour = { version = "0.3", features = ["static-detour"] }
 anyhow = "1.0.86"
 ctor = "0.2.8"
