@@ -32,8 +32,7 @@ fn run(
 }
 
 #[detour(?valid@LuaSurface@@UEBA_NXZ)]
-const fn valid(this: Opaque) -> bool {
+fn valid(this: Opaque) -> bool {
+    println!("Hello from Rust!");
     false
 }
-
-rivets::initialize!();
