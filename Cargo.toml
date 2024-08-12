@@ -5,9 +5,7 @@ edition = "2021"
 
 [dependencies]
 rivets = { git = "https://github.com/factorio-rivets/rivets" }
-retour = { version = "0.3", features = ["static-detour"] }
-anyhow = "1.0.86"
-ctor = "0.2.8"
+abi_stable = "0.11"
 
 [lib]
 crate-type = ["dylib"]

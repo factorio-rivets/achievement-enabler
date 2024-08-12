@@ -36,3 +36,5 @@ fn valid(this: Opaque) -> bool {
     println!("Hello from Rust!");
     false
 }
+
+rivets::finalize!();
