@@ -7,6 +7,7 @@
   "description": "[SHORT DESCRIPTION]",
   "factorio_version": "1.1",
   "dependencies": [
-    "base"
+    "base",
+    "rivets"
   ]
 }
