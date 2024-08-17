@@ -1,3 +1,6 @@
+use factorio_mlua::lua_State;
+use factorio_mlua::Lua;
+use factorio_mlua::Value;
 use rivets::defines;
 use rivets::detour;
 use rivets::Opaque;
@@ -33,8 +36,22 @@ fn run(
 
 #[detour(?valid@LuaSurface@@UEBA_NXZ)]
 fn valid(this: Opaque) -> bool {
-    println!("Hello from Rust!");
-    false
+    println!("bbb!");
+    unsafe { back(this) }
+}
+
+#[detour(?luaCountTilesFiltered@LuaSurface@@QEAAHPEAUlua_State@@@Z)]
+fn lua_count_tiles_filtered(this: Opaque, lua_state: *mut lua_State) -> i64 {
+    let res = unsafe { back(this, lua_state) };
+    println!("lua_count_tiles_filtered!");
+    let lua = unsafe { Lua::init_from_ptr(lua_state) };
+    let globals = lua.globals();
+    for (k, v) in globals.pairs::<Value, Value>().flatten() {
+        println!("Global: {k:?} = {v:?}");
+    }
+    println!("Globals printed!");
+    println!("res: {res}");
+    res
 }
 
 rivets::finalize!();
