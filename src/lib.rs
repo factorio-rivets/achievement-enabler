@@ -2,7 +2,6 @@ use rivets::defines;
 use rivets::detour;
 use rivets::summon;
 use rivets::Opaque;
-use std::panic;
 
 mod luastate;
 
@@ -48,9 +47,11 @@ extern "C" fn get_op(lua_state: *mut luastate::lua_State) -> i64 {}
 fn lua_count_tiles_filtered(this: Opaque, lua_state: *mut luastate::lua_State) -> i64 {
     let res = unsafe { back(this, lua_state) };
     println!("lua_count_tiles_filtered!");
-    let result = panic::catch_unwind(|| {
+    let result = std::panic::catch_unwind(|| {
         //let lua_state = unsafe { *lua_state };
-        unsafe { get_op(lua_state); }
+        unsafe {
+            get_op(lua_state);
+        }
     })
     .inspect_err(|e| {
         println!("Error: {e:?}");
