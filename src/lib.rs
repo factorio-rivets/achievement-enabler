@@ -1,6 +1,6 @@
 use rivets::defines;
 use rivets::detour;
-use rivets::summon;
+use rivets::import;
 use rivets::Opaque;
 
 mod luastate;
@@ -40,7 +40,7 @@ fn valid(this: Opaque) -> bool {
     unsafe { back(this) }
 }
 
-#[summon(lua_gettop)]
+#[import(lua_gettop)]
 extern "C" fn get_op(lua_state: *mut luastate::lua_State) -> i64 {}
 
 #[detour(?luaCountTilesFiltered@LuaSurface@@QEAAHPEAUlua_State@@@Z)]
