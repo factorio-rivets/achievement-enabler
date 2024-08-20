@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 rivets = { git = "https://github.com/factorio-rivets/rivets-rs" }
+windows = { version = "0.58.0", features = [] }
 
 [lib]
 crate-type = ["dylib"]
