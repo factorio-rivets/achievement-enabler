@@ -1,9 +1,7 @@
 use rivets::defines;
 use rivets::detour;
-use rivets::import;
+use rivets::lua::lua_State;
 use rivets::Opaque;
-
-mod luastate;
 
 #[detour(?run@LuaEventDispatcher@@AEAAXW4LuaEventType@@VMapTickType@@P8LuaGameScript@@EAA_NAEBVGameAction@@@Z2@Z)]
 fn run(
@@ -40,17 +38,14 @@ fn valid(this: Opaque) -> bool {
     unsafe { back(this) }
 }
 
-#[import(lua_gettop)]
-extern "C" fn get_op(lua_state: *mut luastate::lua_State) -> i64 {}
-
 #[detour(?luaCountTilesFiltered@LuaSurface@@QEAAHPEAUlua_State@@@Z)]
-fn lua_count_tiles_filtered(this: Opaque, lua_state: *mut luastate::lua_State) -> i64 {
+fn lua_count_tiles_filtered(this: Opaque, lua_state: *mut lua_State) -> i64 {
     let res = unsafe { back(this, lua_state) };
     println!("lua_count_tiles_filtered!");
     let result = std::panic::catch_unwind(|| {
         //let lua_state = unsafe { *lua_state };
         unsafe {
-            get_op(lua_state);
+            rivets::lua::get_top(lua_state);
         }
     })
     .inspect_err(|e| {
